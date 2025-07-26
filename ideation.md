@@ -181,3 +181,81 @@ We'll refine based on user testing and positioning later.
 
 ---
 
+mbare/
+├── backend/                 ← API & business logic (FastAPI or Go)
+│   ├── app/
+│   │   ├── api/             ← route handlers
+│   │   ├── core/            ← settings, security, startup
+│   │   ├── models/          ← SQLAlchemy or GORM models
+│   │   ├── services/        ← business logic (marketplace, forum, users)
+│   │   ├── db/              ← migrations, session setup
+│   │   └── main.py          ← FastAPI/Go entry point
+│   ├── requirements.txt     ← Python deps (or go.mod for Go)
+│   ├── Dockerfile
+│   └── .env.example
+│
+├── frontend/                ← React + Tailwind PWA
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── hooks/
+│   │   ├── api/             ← data fetching utils
+│   │   ├── lib/             ← auth, utils
+│   │   └── App.tsx
+│   ├── tailwind.config.js
+│   ├── package.json
+│   ├── Dockerfile
+│   └── .env.example
+│
+├── ml-agent/                ← Lightweight AI tasks (optional for MVP)
+│   ├── models/              ← Saved model weights or configs
+│   ├── notebooks/           ← Data exploration + experimentation
+│   ├── services/            ← API wrappers (OpenAI, local classifiers)
+│   ├── classify.py          ← Example: image/pest classifier endpoint
+│   ├── requirements.txt
+│   ├── Dockerfile
+│   └── README.md
+│
+├── infra/                   ← DevOps, infra, CI/CD
+│   ├── dev/                 ← docker-compose setup
+│   │   ├── docker-compose.yml
+│   │   └── .env
+│   ├── k8s/                 ← Kubernetes manifests for prod
+│   │   ├── api-deployment.yaml
+│   │   ├── frontend-deployment.yaml
+│   │   └── ingress.yaml
+│   ├── terraform/           ← Optional: GCP infra setup
+│   └── github-actions/      ← CI/CD pipelines
+│
+├── docs/                    ← Specs, architecture, planning
+│   ├── system-design.md
+│   ├── ai-roadmap.md
+│   ├── user-personas.md
+│   └── launch-checklist.md
+│
+├── README.md
+└── LICENSE
+
+
+⚙️ Technologies Used Per Folder
+| Folder      | Purpose                | Stack & Tools                           |
+| ----------- | ---------------------- | --------------------------------------- |
+| `backend/`  | Core API               | FastAPI + PostgreSQL + Redis (or Go)    |
+| `frontend/` | PWA App                | React + Tailwind + Vite                 |
+| `ml-agent/` | Optional AI Components | Python + TFLite/OpenAI/HuggingFace      |
+| `infra/`    | Dev & Prod Infra       | Docker, Kubernetes, GitHub Actions, GCP |
+| `docs/`     | Internal Planning      | Markdown + diagrams                     |
+
+
+ Development Phases
+✅ Initial Setup
+ Bootstrap backend (FastAPI w/ user auth + listings CRUD)
+
+ Scaffold frontend with Tailwind & auth flow
+
+ Set up Docker Compose dev environment (API, DB, frontend)
+
+ Define Kubernetes manifests for staging
+
+ Write basic GitHub Action workflows (build → deploy)
